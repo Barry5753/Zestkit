@@ -1,0 +1,112 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+}
+
+:root {
+  --background: #fbfaf7;
+  --foreground: #151515;
+  --card: #fffefa;
+  --card-foreground: #151515;
+  --popover: #fffefa;
+  --popover-foreground: #151515;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --secondary: #eef3ff;
+  --secondary-foreground: #151515;
+  --muted: #f3f1ed;
+  --muted-foreground: #566175;
+  --accent: #eaf1ff;
+  --accent-foreground: #1d4ed8;
+  --destructive: #b42318;
+  --border: #e4e1da;
+  --input: #cbc7bf;
+  --ring: #2563eb;
+  --radius: 0.625rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  button,
+  a,
+  input,
+  summary,
+  label {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background: #dbe7ff;
+    color: #122033;
+  }
+}
+
+.indeterminate-progress [data-slot="progress-indicator"] {
+  width: 38%;
+  flex: none;
+  transform: translateX(0) !important;
+  animation: compression-progress 1.15s ease-in-out infinite alternate;
+}
+
+@keyframes compression-progress {
+  from {
+    margin-left: -18%;
+  }
+  to {
+    margin-left: 80%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .indeterminate-progress [data-slot="progress-indicator"] {
+    width: 100%;
+    opacity: 0.45;
+    animation: none;
+    transform: translateX(0) !important;
+  }
+}

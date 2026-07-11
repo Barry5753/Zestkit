@@ -1,0 +1,9 @@
+.DS_Store
+*.log
+/design/
+/research/
+/web/design-qa/
+/web/design-qa.md
+/web/AGENTS.md
+/web/CLAUDE.md
+/web/package-lock.json
