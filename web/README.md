@@ -1,6 +1,6 @@
 # Zestkit
 
-Zestkit is a free, open-source image compressor for strict upload limits. It requires no account, keeps the source format, and processes static JPG, PNG, and WebP files locally in the browser.
+Zestkit is a free, open-source collection of focused browser image tools. It requires no account and processes files locally instead of uploading them to a Zestkit server.
 
 ## Run locally
 
@@ -30,8 +30,9 @@ This value is used for canonical URLs, Open Graph URLs, `robots.txt`, and `sitem
 - `/compress-image-to-200kb`
 - `/compress-image-to-1mb`
 - `/compress-image-to-2mb`
+- `/image-format-converter`
 
-Each route is statically generated with a unique title, description, H1, scenario copy, quality guidance, FAQ content, and links to the other target-size tools.
+Each compression route is statically generated with a unique title, description, H1, scenario copy, quality guidance, FAQ content, and links to the other target-size tools. The format converter has its own static metadata, focused workflow, and FAQ content.
 
 ## Shared UI conventions
 
@@ -52,6 +53,18 @@ Each route is statically generated with a unique title, description, H1, scenari
 - Shows the original and compressed images in equal preview frames before download.
 - Never exposes a download when the verified result exceeds the selected limit.
 
+## Format conversion behavior
+
+- Detects file content instead of trusting the filename or browser-provided MIME type.
+- Accepts static JPG, PNG, WebP, SVG, HEIC, and HEIF files up to 50MB.
+- Outputs JPG, PNG, or WebP while preserving the decoded pixel dimensions.
+- Uses a Web Worker for raster and HEIC/HEIF conversion; SVG uses the browser image renderer because Chromium workers cannot decode SVG reliably.
+- Uses `heic-to` and its bundled libheif build as the local HEIC/HEIF decoder when the browser cannot decode the file natively.
+- Rejects animated PNG and WebP files instead of silently dropping animation frames.
+- Rejects SVG scripts, event handlers, embedded HTML, and external resources before rendering.
+- Fills transparent pixels with white when exporting JPG because JPG has no alpha channel.
+- Verifies the output MIME type, file signature, dimensions, and non-empty byte size before exposing a download.
+
 ## Verification
 
 ```bash
@@ -61,7 +74,7 @@ pnpm build
 
 ## V1 boundary
 
-The first release intentionally excludes login, payment, batch queues, API access, output-format controls, and quality sliders. Those features should be considered only after organic traffic and repeat usage validate demand.
+The first release intentionally excludes login, payment, batch queues, API access, resizing controls, and quality sliders. Those features should be considered only after organic traffic and repeat usage validate demand.
 
 ## License
 
