@@ -1,14 +1,23 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export function SiteHeader() {
   return (
     <header className="border-b border-border bg-background">
-      <div className="flex h-[72px] w-full items-center justify-between px-5 sm:px-7 lg:h-[92px] lg:px-8">
+      <div className="site-container flex h-[72px] items-center justify-between px-5 sm:px-7 lg:h-[92px] lg:px-8">
         <Link
           href="/compress-image-to-100kb"
-          className="text-[22px] font-bold tracking-[-0.045em] text-foreground lg:text-[28px]"
+          className="flex items-center gap-2 text-[22px] font-bold tracking-[-0.045em] text-foreground lg:gap-2.5 lg:text-[28px]"
         >
-          Zestkit
+          <Image
+            src="/zestkit-logo.png"
+            alt=""
+            width={383}
+            height={336}
+            priority
+            className="h-7 w-auto lg:h-8"
+          />
+          <span>Zestkit</span>
         </Link>
         <nav
           aria-label="Primary navigation"

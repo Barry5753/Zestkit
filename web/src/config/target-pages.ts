@@ -120,7 +120,7 @@ export const targetPages: TargetPage[] = [
       {
         question: "What if reaching 100KB requires a strong reduction?",
         answer:
-          "Zestkit still creates the valid result instead of blocking it. When the reduction is extreme, the page asks you to review the side-by-side preview before downloading or choosing a larger target.",
+          "Zestkit still creates the valid result instead of blocking it. The compressed image remains beside the original so you can judge whether it is readable before downloading or choosing a larger target.",
       },
     ],
   },

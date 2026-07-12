@@ -12,11 +12,12 @@ import {
   CircleCheck,
   Download,
   ImageIcon,
+  ImagePlus,
   LoaderCircle,
-  RotateCcw,
   ShieldCheck,
   TriangleAlert,
   Upload,
+  X,
 } from "lucide-react";
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -135,11 +136,6 @@ export function CompressorTool({
     file && result
       ? buildDownloadName(file.name, targetLabel, result.mimeType)
       : "compressed-image";
-  const resultNeedsReview =
-    selectedImage && result
-      ? Math.max(result.width, result.height) < 200 ||
-        (result.quality !== null && result.quality < 0.15)
-      : false;
 
   useEffect(() => {
     return () => {
@@ -293,8 +289,8 @@ export function CompressorTool({
         onChange={handleFileInput}
       />
 
-      <div className="grid lg:grid-cols-[minmax(420px,30.4vw)_minmax(0,1fr)]">
-        <section className="px-5 py-10 sm:px-8 lg:min-h-[calc(100svh-92px)] lg:border-r lg:border-border lg:px-10 lg:py-[88px] xl:px-[42px]">
+      <div className="site-container grid lg:grid-cols-[minmax(420px,30.4%)_minmax(0,1fr)]">
+        <section className="px-5 py-10 sm:px-8 lg:border-r lg:border-border lg:px-10 lg:py-16 xl:px-[42px]">
           <h1 className="relative max-w-[360px] text-[42px] leading-[1.08] font-bold tracking-[-0.055em] text-foreground sm:text-[48px] lg:text-[46px] min-[1400px]:text-[52px]">
             <span className="block">Compress</span>
             <span className="block">Image to {initialTargetLabel}</span>
@@ -385,17 +381,6 @@ export function CompressorTool({
                   </div>
                 </div>
               </div>
-
-              {resultNeedsReview && (
-                <Alert className="mt-6 border-[#ead8a5] bg-[#fff8e7] px-3 py-3">
-                  <TriangleAlert aria-hidden="true" className="text-[#9a6700]" />
-                  <AlertTitle className="text-[#6f4c00]">Review the preview</AlertTitle>
-                  <AlertDescription className="text-[#735c27]">
-                    This target required a strong reduction. The download is ready,
-                    but compare both images first.
-                  </AlertDescription>
-                </Alert>
-              )}
             </div>
           )}
 
@@ -464,27 +449,42 @@ export function CompressorTool({
               </Button>
             )}
 
-            {selectedImage && status !== "compressing" && (
-              <Button
-                type="button"
-                variant="ghost"
-                className="h-11 justify-start px-2 text-base text-muted-foreground hover:bg-transparent hover:text-foreground"
-                onClick={() => fileInputRef.current?.click()}
-              >
-                <RotateCcw aria-hidden="true" className="size-5" />
-                Change image
-              </Button>
-            )}
+            {selectedImage &&
+              status !== "compressing" &&
+              status !== "success" && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="h-11 w-full max-w-[344px] rounded-[10px] bg-card text-sm hover:border-primary/40 hover:bg-secondary"
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  <ImagePlus aria-hidden="true" className="size-4" />
+                  Change image
+                </Button>
+              )}
 
             {status === "success" && (
-              <Button
-                type="button"
-                variant="ghost"
-                className="h-10 justify-start px-2 text-sm text-muted-foreground hover:bg-transparent hover:text-foreground"
-                onClick={resetTool}
-              >
-                Start over
-              </Button>
+              <div className="grid w-full max-w-[344px] grid-cols-2 gap-3">
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="h-11 rounded-[10px] bg-card text-sm hover:border-primary/40 hover:bg-secondary"
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  <ImagePlus aria-hidden="true" className="size-4" />
+                  Change image
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  aria-label="Clear image and compression result"
+                  className="h-11 rounded-[10px] bg-card text-sm text-muted-foreground hover:border-destructive/30 hover:bg-[#fff4f2] hover:text-destructive"
+                  onClick={resetTool}
+                >
+                  <X aria-hidden="true" className="size-4" />
+                  Clear
+                </Button>
+              </div>
             )}
           </div>
 
@@ -498,7 +498,7 @@ export function CompressorTool({
 
         <section
           ref={previewRegionRef}
-          className="scroll-mt-4 px-5 py-10 sm:px-8 lg:min-h-[calc(100svh-92px)] lg:px-12 lg:py-[88px] xl:px-[50px]"
+          className="scroll-mt-4 px-5 py-10 sm:px-8 lg:px-12 lg:py-16 xl:px-[50px]"
         >
           {!selectedImage ? (
             <UploadStage
@@ -608,7 +608,7 @@ function UploadStage({
   return (
     <div
       className={cn(
-        "flex min-h-[420px] flex-col items-center justify-center rounded-[12px] border border-dashed border-input bg-card px-6 text-center transition-colors lg:min-h-[620px]",
+        "flex min-h-[420px] flex-col items-center justify-center rounded-[12px] border border-dashed border-input bg-card px-6 text-center transition-colors lg:min-h-[520px]",
         isDragging && "border-primary bg-secondary",
       )}
       onDragEnter={(event) => {

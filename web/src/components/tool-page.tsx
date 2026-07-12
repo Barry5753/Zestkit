@@ -1,11 +1,20 @@
-import { CircleCheck, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 
 import { CompressorTool } from "@/components/compressor-tool";
 import { RelatedToolLinks } from "@/components/related-tool-links";
 import { SiteHeader } from "@/components/site-header";
-import type { TargetPage } from "@/config/target-pages";
+import { ToolCheckList } from "@/components/tool-check-list";
+import { targetPages, type TargetPage } from "@/config/target-pages";
 
 export function ToolPage({ page }: { page: TargetPage }) {
+  const relatedTools = targetPages
+    .filter((targetPage) => targetPage.slug !== page.slug)
+    .map((targetPage) => ({
+      href: `/${targetPage.slug}`,
+      primaryText: targetPage.targetLabel,
+      secondaryText: "Compress image to",
+    }));
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
@@ -15,13 +24,14 @@ export function ToolPage({ page }: { page: TargetPage }) {
           initialTargetLabel={page.targetLabel}
         />
 
-        <section className="mx-auto w-full max-w-[1240px] px-5 pt-8 lg:px-8 lg:pt-10">
-          <div>
-            <RelatedToolLinks currentPage={page} />
-          </div>
+        <section className="site-container px-5 pt-8 lg:px-8 lg:pt-10">
+          <RelatedToolLinks
+            ariaLabel="Related image compression tools"
+            links={relatedTools}
+          />
         </section>
 
-        <section className="mx-auto grid w-full max-w-[1240px] gap-12 px-5 py-14 lg:grid-cols-[1.45fr_1fr] lg:px-8 lg:py-20">
+        <section className="site-container grid gap-12 px-5 py-14 lg:grid-cols-[1.45fr_1fr] lg:px-8 lg:py-20">
           <div>
             <h2 className="text-3xl font-bold tracking-[-0.025em] text-foreground">
               {page.seoHeading}
@@ -56,7 +66,7 @@ export function ToolPage({ page }: { page: TargetPage }) {
         </section>
 
         <section className="border-t border-border bg-muted">
-          <div className="mx-auto grid w-full max-w-[1240px] gap-12 px-5 py-14 lg:grid-cols-[1.45fr_1fr] lg:px-8 lg:py-20">
+          <div className="site-container grid gap-12 px-5 py-14 lg:grid-cols-[1.45fr_1fr] lg:px-8 lg:py-20">
             <div>
               <h2 className="text-2xl font-bold tracking-[-0.02em] text-foreground">
                 How to compress an image to {page.targetLabel}
@@ -78,28 +88,8 @@ export function ToolPage({ page }: { page: TargetPage }) {
               </ol>
 
               <div className="mt-12 grid gap-8 sm:grid-cols-2">
-                <div>
-                  <h2 className="text-xl font-bold text-foreground">Common uses</h2>
-                  <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
-                    {page.useCases.map((useCase) => (
-                      <li key={useCase} className="flex gap-3">
-                        <CircleCheck aria-hidden="true" className="mt-1 size-4 shrink-0 text-[#087f5b]" />
-                        <span>{useCase}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h2 className="text-xl font-bold text-foreground">Quality tips</h2>
-                  <ul className="mt-4 space-y-3 text-sm leading-6 text-muted-foreground">
-                    {page.qualityTips.map((tip) => (
-                      <li key={tip} className="flex gap-3">
-                        <CircleCheck aria-hidden="true" className="mt-1 size-4 shrink-0 text-[#087f5b]" />
-                        <span>{tip}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <ToolCheckList heading="Common uses" items={page.useCases} />
+                <ToolCheckList heading="Quality tips" items={page.qualityTips} />
               </div>
             </div>
 
@@ -117,7 +107,7 @@ export function ToolPage({ page }: { page: TargetPage }) {
       </main>
 
       <footer className="border-t border-border">
-        <div className="mx-auto flex w-full max-w-[1240px] flex-col gap-2 px-5 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between lg:px-8">
+        <div className="site-container flex flex-col gap-2 px-5 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between lg:px-8">
           <p>Zestkit — exact-size image compression in your browser.</p>
           <p>No uploads · No account · No payment</p>
         </div>

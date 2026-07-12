@@ -33,6 +33,12 @@ This value is used for canonical URLs, Open Graph URLs, `robots.txt`, and `sitem
 
 Each route is statically generated with a unique title, description, H1, scenario copy, quality guidance, FAQ content, and links to the other target-size tools.
 
+## Shared UI conventions
+
+- Use the `site-container` utility from `src/app/globals.css` for every site-level region. It stays fluid on smaller screens and stops at 1440px.
+- Reuse `SiteHeader`, `RelatedToolLinks`, and `ToolCheckList` across image tools.
+- Keep each tool's processing state and browser logic in its own tool component instead of adding mode switches to one universal component.
+
 ## Compression behavior
 
 - Uses decimal limits: `100KB = 100,000 bytes` and `1MB = 1,000,000 bytes`.
