@@ -1,7 +1,9 @@
 import { Plus } from "lucide-react";
+import Link from "next/link";
 
 import { CompressorTool } from "@/components/compressor-tool";
 import { RelatedToolLinks } from "@/components/related-tool-links";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ToolCheckList } from "@/components/tool-check-list";
 import { targetPages, type TargetPage } from "@/config/target-pages";
@@ -101,17 +103,22 @@ export function ToolPage({ page }: { page: TargetPage }) {
               <p className="mt-3 text-sm leading-6 text-muted-foreground">
                 Zestkit does not need an upload API for compression. The browser reads the selected file, runs the encoder in a worker, verifies the resulting bytes, and creates a temporary local download URL. No login, email address, or payment is required.
               </p>
+              <p className="mt-4 text-sm leading-6 text-muted-foreground">
+                Zestkit is fully open source. You can{" "}
+                <Link
+                  href="/open-source"
+                  className="font-semibold text-[#087f5b] underline decoration-[#87cdb2] underline-offset-4 hover:text-[#056445]"
+                >
+                  review the processing code
+                </Link>{" "}
+                instead of taking this privacy claim on trust.
+              </p>
             </aside>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-border">
-        <div className="site-container flex flex-col gap-2 px-5 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between lg:px-8">
-          <p>Zestkit — exact-size image compression in your browser.</p>
-          <p>No uploads · No account · No payment</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

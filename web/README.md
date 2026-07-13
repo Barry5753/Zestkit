@@ -21,7 +21,7 @@ Copy `.env.example` to `.env.local` and set the final public origin before deplo
 NEXT_PUBLIC_SITE_URL=https://your-real-domain.com
 ```
 
-This value is used for canonical URLs, Open Graph URLs, `robots.txt`, and `sitemap.xml`. Do not launch with the localhost fallback.
+This value is used for canonical URLs, Open Graph URLs, `robots.txt`, and `sitemap.xml`. It defaults to `https://zestkit.cc`; set your own public origin when deploying a fork.
 
 ## Included routes
 
@@ -31,6 +31,7 @@ This value is used for canonical URLs, Open Graph URLs, `robots.txt`, and `sitem
 - `/compress-image-to-1mb`
 - `/compress-image-to-2mb`
 - `/image-format-converter`
+- `/open-source`
 
 Each compression route is statically generated with a unique title, description, H1, scenario copy, quality guidance, FAQ content, and links to the other target-size tools. The format converter has its own static metadata, focused workflow, and FAQ content.
 

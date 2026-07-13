@@ -3,6 +3,7 @@ import { ArrowRight, Plus, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
 import { FormatConverterTool } from "@/components/format-converter-tool";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteName } from "@/lib/site";
 
@@ -140,18 +141,23 @@ export default function ImageFormatConverterPage() {
                 <p className="mt-3 text-sm leading-6 text-muted-foreground">
                   Format detection, decoding, conversion, and download are designed to happen locally. Closing the tab removes the temporary preview and output URLs.
                 </p>
+                <p className="mt-4 text-sm leading-6 text-muted-foreground">
+                  The project is open source, so you can{" "}
+                  <Link
+                    href="/open-source"
+                    className="font-semibold text-[#087f5b] underline decoration-[#87cdb2] underline-offset-4 hover:text-[#056445]"
+                  >
+                    inspect the local conversion path
+                  </Link>{" "}
+                  before choosing a file.
+                </p>
               </div>
             </div>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-border">
-        <div className="site-container flex flex-col gap-2 px-5 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between lg:px-8">
-          <p>Zestkit — focused image tools that run in your browser.</p>
-          <p>No uploads · No account · No payment</p>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
