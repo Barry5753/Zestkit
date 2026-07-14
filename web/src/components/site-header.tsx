@@ -17,7 +17,7 @@ const imageTools = [
   },
   {
     href: "/image-format-converter",
-    name: "Image Format Converter",
+    name: "Image Converter",
     description: "Convert JPG, PNG, WebP, SVG and HEIC",
     icon: FileImage,
   },

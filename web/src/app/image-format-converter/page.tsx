@@ -7,15 +7,14 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteName } from "@/lib/site";
 
-const title = "Free Image Format Converter | Zestkit";
+const title = "Free Online Image Converter – JPG, PNG & WebP | Zestkit";
 const description =
-  "Convert JPG, PNG, WebP, SVG, HEIC and HEIF images in your browser. No upload or account required.";
+  "Free online image converter for JPG, PNG, WebP, SVG, HEIC and HEIF files. Convert to JPG, PNG or WebP privately in your browser—no upload or signup.";
 
 export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: "/image-format-converter" },
-  robots: { index: false, follow: true },
   openGraph: {
     type: "website",
     siteName,
@@ -41,6 +40,11 @@ const faqs = [
     question: "Can I convert HEIC photos from an iPhone?",
     answer:
       "Yes. HEIC and HEIF files are decoded locally and can be exported as JPG, PNG, or WebP.",
+  },
+  {
+    question: "Can I use this as a JPG converter?",
+    answer:
+      "Yes. Choose a PNG, WebP, SVG, HEIC, or HEIF image and select JPG as the output format. Transparent areas are placed on a white background.",
   },
 ];
 
@@ -79,10 +83,10 @@ export default function ImageFormatConverterPage() {
         <section className="site-container grid gap-12 px-5 py-14 lg:grid-cols-[1.45fr_1fr] lg:px-8 lg:py-20">
           <div>
             <h2 className="text-3xl font-bold tracking-[-0.025em]">
-              How to convert an image format
+              How to use this online image converter
             </h2>
             <p className="mt-5 max-w-3xl text-[15px] leading-7 text-muted-foreground">
-              Choose a source image, confirm the detected format, select JPG, PNG, or WebP, and download the converted file. The tool keeps the workflow intentionally focused—no editor, account, or batch queue.
+              Use this free online image converter to choose a source image, confirm the detected format, select JPG, PNG, or WebP, and download the converted file. The workflow stays focused—no editor, account, or batch queue.
             </p>
 
             <ol className="mt-8 grid gap-4 sm:grid-cols-3">

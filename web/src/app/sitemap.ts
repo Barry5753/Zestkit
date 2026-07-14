@@ -13,6 +13,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...compressionPages,
     {
+      url: new URL("/image-format-converter", siteUrl).toString(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: new URL("/open-source", siteUrl).toString(),
       changeFrequency: "monthly",
       priority: 0.6,

@@ -242,8 +242,8 @@ export function FormatConverterTool() {
       <div className="site-container grid lg:grid-cols-[minmax(420px,30.4%)_minmax(0,1fr)]">
         <section className="px-5 py-10 sm:px-8 lg:border-r lg:border-border lg:px-10 lg:py-16 xl:px-[42px]">
           <h1 className="relative max-w-[370px] text-[42px] leading-[1.04] font-bold tracking-[-0.057em] text-foreground sm:text-[48px] lg:text-[46px] min-[1400px]:text-[52px]">
-            <span className="block">Convert</span>
-            <span className="block">Image Format</span>
+            <span className="block">Online</span>
+            <span className="block">Image Converter</span>
             <span className="absolute top-1.5 right-0 rounded-full border border-[#bde7d7] bg-[#eaf8f2] px-3 py-1 text-[13px] leading-5 font-semibold tracking-[-0.01em] text-[#087f5b]">
               for Free
             </span>
