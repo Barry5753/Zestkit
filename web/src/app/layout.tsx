@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
-import Script from "next/script";
 
 import { siteName, siteUrl } from "@/lib/site";
 
@@ -47,20 +46,25 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
-      <body>
-        {children}
-        <Script
+      <head>
+        <script
+          async
           src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
-          strategy="afterInteractive"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
+        <script
+          id="google-analytics"
+          dangerouslySetInnerHTML={{
+            __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${googleAnalyticsId}');
-          `}
-        </Script>
+          `,
+          }}
+        />
+      </head>
+      <body>
+        {children}
       </body>
     </html>
   );
